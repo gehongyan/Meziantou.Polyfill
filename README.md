@@ -650,12 +650,13 @@ The filtering logic works as follows:
 - `System.Security.Cryptography.RandomNumberGenerator.GetItems<T>(System.ReadOnlySpan<T> choices, System.Int32 length)`
 - `System.Security.Cryptography.RandomNumberGenerator.GetString(System.ReadOnlySpan<System.Char> choices, System.Int32 length)`
 
-### Properties (14)
+### Properties (15)
 
 - `System.Collections.ObjectModel.ReadOnlyCollection<T>.Empty`
 - `System.Collections.ObjectModel.ReadOnlyDictionary<TKey, TValue>.Empty`
 - `System.DateTime.Nanosecond`
 - `System.DateTimeOffset.Nanosecond`
+- `System.DateTimeOffset.UnixEpoch`
 - `System.Delegate.HasSingleTarget`
 - `System.Environment.ProcessId`
 - `System.Net.Http.HttpMethod.Query`

@@ -1892,6 +1892,31 @@ public class SystemTests
         Assert.Equal(900, DateTimeOffset.MaxValue.Nanosecond);
     }
 
+    [Fact]
+    public void DateTimeOffset_UnixEpoch()
+    {
+        // Test that UnixEpoch represents January 1, 1970 00:00:00 UTC
+        var unixEpoch = DateTimeOffset.UnixEpoch;
+        
+        Assert.Equal(1970, unixEpoch.Year);
+        Assert.Equal(1, unixEpoch.Month);
+        Assert.Equal(1, unixEpoch.Day);
+        Assert.Equal(0, unixEpoch.Hour);
+        Assert.Equal(0, unixEpoch.Minute);
+        Assert.Equal(0, unixEpoch.Second);
+        Assert.Equal(0, unixEpoch.Millisecond);
+        Assert.Equal(TimeSpan.Zero, unixEpoch.Offset);
+        
+        // Test that the ticks value is correct (621355968000000000)
+        Assert.Equal(621355968000000000L, unixEpoch.Ticks);
+        
+        // Test that ToUnixTimeSeconds returns 0 for UnixEpoch
+        Assert.Equal(0L, unixEpoch.ToUnixTimeSeconds());
+        
+        // Test that ToUnixTimeMilliseconds returns 0 for UnixEpoch
+        Assert.Equal(0L, unixEpoch.ToUnixTimeMilliseconds());
+    }
+
 #if NET6_0_OR_GREATER
     [Fact]
     public void DateOnly_Deconstruct()
