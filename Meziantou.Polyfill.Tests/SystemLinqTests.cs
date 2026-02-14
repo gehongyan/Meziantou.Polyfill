@@ -159,4 +159,43 @@ public class SystemLinqTests
         Assert.Equal([1, 2, 3, 4], result);
     }
 
+    [Fact]
+    public void Enumerable_Chunk()
+    {
+        var result = new[] { 1, 2, 3, 4, 5 }.Chunk(2).ToArray();
+        Assert.Equal(3, result.Length);
+        Assert.Equal([1, 2], result[0]);
+        Assert.Equal([3, 4], result[1]);
+        Assert.Equal([5], result[2]);
+    }
+
+    [Fact]
+    public void Enumerable_Chunk_ExactSize()
+    {
+        var result = new[] { 1, 2, 3, 4 }.Chunk(2).ToArray();
+        Assert.Equal(2, result.Length);
+        Assert.Equal([1, 2], result[0]);
+        Assert.Equal([3, 4], result[1]);
+    }
+
+    [Fact]
+    public void Enumerable_Chunk_EmptySource()
+    {
+        var result = Array.Empty<int>().Chunk(2).ToArray();
+        Assert.Empty(result);
+    }
+
+    [Fact]
+    public void Enumerable_Chunk_ThrowsOnNullSource()
+    {
+        Assert.Throws<ArgumentNullException>(() => ((IEnumerable<int>)null!).Chunk(2));
+    }
+
+    [Fact]
+    public void Enumerable_Chunk_ThrowsOnInvalidSize()
+    {
+        Assert.Throws<ArgumentOutOfRangeException>(() => new[] { 1, 2, 3 }.Chunk(0));
+        Assert.Throws<ArgumentOutOfRangeException>(() => new[] { 1, 2, 3 }.Chunk(-1));
+    }
+
 }
